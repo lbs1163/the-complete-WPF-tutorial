@@ -23,6 +23,12 @@ namespace the_complete_WPF_tutorial
         public MainWindow()
         {
             InitializeComponent();
+            pnlMainGrid.MouseUp += new MouseButtonEventHandler(pnlMainGrid_MouseUp);
+        }
+
+        private void pnlMainGrid_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("You clicked me at " + e.GetPosition(this).ToString());
         }
     }
 }

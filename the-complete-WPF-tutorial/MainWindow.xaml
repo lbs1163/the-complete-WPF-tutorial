@@ -6,15 +6,6 @@
         xmlns:local="clr-namespace:the_complete_WPF_tutorial"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Button FontWeight="Bold">
-            <Button.Content>
-                <WrapPanel>
-                    <TextBlock Foreground="Blue">Multi</TextBlock>
-                    <TextBlock Foreground="Red">Color</TextBlock>
-                    <TextBlock>Button</TextBlock>
-                </WrapPanel>
-            </Button.Content>
-        </Button>
+    <Grid Name="pnlMainGrid" Background="LightBlue">
     </Grid>
 </Window>
