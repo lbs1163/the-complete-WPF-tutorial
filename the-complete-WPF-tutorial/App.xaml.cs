@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Windows;
+using System.Threading;
+using System.Globalization;
 
 namespace the_complete_WPF_tutorial
 {
     public partial class App : Application
     {
-        private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        private void Application_Startup(object sender, StartupEventArgs e)
         {
-            MessageBox.Show("An unhandled exception just occurred: " + e.Exception.Message, "Exception Sample", MessageBoxButton.OK, MessageBoxImage.Error);
-            e.Handled = true;
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("ko-KR");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
         }
     }
 }
