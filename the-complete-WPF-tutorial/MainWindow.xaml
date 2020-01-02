@@ -1,9 +1,30 @@
 ﻿<Window x:Class="the_complete_WPF_tutorial.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Title="LabelControlSample" Height="160" Width="280">
-    <DockPanel Margin="10">
-        <TextBox SelectionChanged="TextBox_SelectionChanged" DockPanel.Dock="Top" />
-        <TextBox Name="txtStatus" AcceptsReturn="True" TextWrapping="Wrap" IsReadOnly="True" />
-    </DockPanel>
+    Title="LabelControlSample" Height="200" Width="280">
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Padding" Value="5,2" />
+            <Setter Property="Margin" Value="0,5,0,0" />
+        </Style>
+    </Window.Resources>
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Orientation="Vertical">
+            <Button Click="HelloWorldButton_Click">Hello, World!</Button>
+            <Button Background="Beige" Foreground="Blue" FontWeight="Bold">Formatted Button</Button>
+            <Button>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>Formatted</TextBlock>
+                    <TextBlock Foreground="Blue" FontWeight="Bold" Margin="2,0">Button</TextBlock>
+                    <TextBlock Foreground="Gray" FontStyle="Italic">[Various]</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button>
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png" Height="16" Width="16" />
+                    <TextBlock Margin="5,0">Help</TextBlock>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+    </Grid>
 </Window>
