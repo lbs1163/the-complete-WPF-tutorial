@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Data;
-using System.Diagnostics;
+using System.Windows.Input;
 
 namespace the_complete_WPF_tutorial
 {
@@ -11,20 +11,25 @@ namespace the_complete_WPF_tutorial
         {
             InitializeComponent();
         }
-    }
 
-    public class DebugDummyConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        private void CutCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            Debugger.Break();
-            return value;
+            e.CanExecute = (txtEditor != null) && (txtEditor.SelectionLength > 0);
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        private void CutCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            Debugger.Break();
-            return value;
+            txtEditor.Cut();
+        }
+
+        private void PasteCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = Clipboard.ContainsText();
+        }
+
+        private void PasteCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            txtEditor.Paste();
         }
     }
 }
