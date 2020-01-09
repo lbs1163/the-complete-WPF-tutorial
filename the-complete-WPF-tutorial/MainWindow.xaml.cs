@@ -10,6 +10,7 @@ namespace the_complete_WPF_tutorial
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = this;
         }
     }
 }
