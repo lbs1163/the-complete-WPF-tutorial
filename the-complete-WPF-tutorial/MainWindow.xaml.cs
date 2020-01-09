@@ -12,24 +12,28 @@ namespace the_complete_WPF_tutorial
             InitializeComponent();
         }
 
-        private void CutCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        private void ExitCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = (txtEditor != null) && (txtEditor.SelectionLength > 0);
+            e.CanExecute = true;
         }
 
-        private void CutCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        private void ExitCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            txtEditor.Cut();
+            Application.Current.Shutdown();
         }
+    }
 
-        private void PasteCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = Clipboard.ContainsText();
-        }
-
-        private void PasteCommand_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            txtEditor.Paste();
-        }
+    public static class CustomCommands
+    {
+        public static readonly RoutedUICommand Exit = new RoutedUICommand
+            (
+                "Exit",
+                "Exit",
+                typeof(CustomCommands),
+                new InputGestureCollection()
+                {
+                    new KeyGesture(Key.F4, ModifierKeys.Alt)
+                }
+            );
     }
 }
