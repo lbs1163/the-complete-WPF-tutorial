@@ -10,10 +10,13 @@ namespace the_complete_WPF_tutorial
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = this;
+        }
 
-            Binding binding = new Binding("Text");
-            binding.Source = txtValue;
-            lblValue.SetBinding(TextBlock.TextProperty, binding);
+        private void btnUpdateSource_Click(object sender, RoutedEventArgs e)
+        {
+            BindingExpression binding = txtWindowTitle.GetBindingExpression(TextBox.TextProperty);
+            binding.UpdateSource();
         }
     }
 }
