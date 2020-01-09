@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Media.Imaging;
-using Microsoft.Win32;
+using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace the_complete_WPF_tutorial
 {
@@ -10,7 +10,10 @@ namespace the_complete_WPF_tutorial
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = this;
+
+            Binding binding = new Binding("Text");
+            binding.Source = txtValue;
+            lblValue.SetBinding(TextBlock.TextProperty, binding);
         }
     }
 }
