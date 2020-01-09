@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
 
 namespace the_complete_WPF_tutorial
@@ -10,13 +9,35 @@ namespace the_complete_WPF_tutorial
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = this;
+        }
+    }
+
+    public class YesNoToBooleanConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            switch(value.ToString().ToLower())
+            {
+                case "yes":
+                case "oui":
+                    return true;
+                case "no":
+                case "non":
+                    return false;
+            }
+            return false;
         }
 
-        private void btnUpdateSource_Click(object sender, RoutedEventArgs e)
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            BindingExpression binding = txtWindowTitle.GetBindingExpression(TextBox.TextProperty);
-            binding.UpdateSource();
+            if (value is bool)
+            {
+                if ((bool)value == true)
+                    return "yes";
+                else
+                    return "no";
+            }
+            return "no";
         }
     }
 }
